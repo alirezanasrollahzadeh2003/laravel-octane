@@ -10,10 +10,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::all();
+        return Product::latest()->cursorPaginate(10);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): Product
     {
         $request->validate([
             'name' => 'required',
